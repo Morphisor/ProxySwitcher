@@ -1,4 +1,5 @@
 ﻿using ProxySwitcher.DataAccess.Services;
+using ProxySwitcher.Interface.Properties;
 using ProxySwitcher.Models.Dtos;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace ProxySwitcher.Interface
             MaximizeBox = false;
             MinimizeBox = false;
             _proxySettingService = new ProxySettingService();
+            Icon = Resources.TrayIcon;
         }
 
         private void Save_Click(object sender, EventArgs e)

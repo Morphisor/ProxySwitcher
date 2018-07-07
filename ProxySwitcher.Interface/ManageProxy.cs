@@ -1,4 +1,5 @@
 ﻿using ProxySwitcher.DataAccess.Services;
+using ProxySwitcher.Interface.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace ProxySwitcher.Interface
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
+            Icon = Resources.TrayIcon;
         }
 
         protected override void OnLoad(EventArgs e)
