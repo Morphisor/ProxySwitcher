@@ -23,7 +23,8 @@ namespace ProxySwitcher.DataAccess.Services
                 CreateDate = model.CreateDate.GetUnixTime(),
                 IpAddress = model.IpAddress,
                 Port = model.Port,
-                Name = model.Name
+                Name = model.Name,
+                ProxySettingId = model.ProxySettingId
             };
             return toReturn;
         }
@@ -35,7 +36,8 @@ namespace ProxySwitcher.DataAccess.Services
                 CreateDate = model.CreateDate.GetDateTime(),
                 IpAddress = model.IpAddress,
                 Port = model.Port,
-                Name = model.Name
+                Name = model.Name,
+                ProxySettingId = model.ProxySettingId
             };
             return toReturn;
         }

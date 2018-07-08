@@ -7,6 +7,7 @@ namespace ProxySwitcher.Models.Misc
     public enum OnErrorType
     {
         Insert,
+        Update,
         Get
     }
 }

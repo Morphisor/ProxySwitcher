@@ -87,32 +87,36 @@ namespace ProxySwitcher.DataAccess
             return toReturn;
         }
 
-        public IEnumerable<Dto> Get(Func<Dto, bool> lambda)
+        public bool Update(Dto model)
         {
-            var command = new SQLiteCommand($"SELECT * FROM {tableName}");
-            List<Dto> dtos = new List<Dto>();
+            bool toReturn = false;
+            var entity = MapDtoToEntity(model);
+            var command = SQLiteUtils.UpdateCommand<Entity>(tableName, entity);
+            OnPreSave?.Invoke(new OnPreSaveArgs<Dto>(model));
             var connection = new SQLiteConnection(_connectionString);
             try
             {
                 connection.Open();
                 command.Connection = connection;
-                var reader = command.ExecuteReader();
-                List<Entity> entities = SQLiteUtils.ReadEntity<Entity>(reader);
-                foreach (var e in entities)
-                {
-                    var dto = MapEntityToDto(e);
-                    dtos.Add(dto);
-                }
+                command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                OnError?.Invoke(new OnErrorArgs<Dto>(default(Dto), ex, OnErrorType.Get));
+                toReturn = false;
+                OnError?.Invoke(new OnErrorArgs<Dto>(model, ex, OnErrorType.Update));
             }
             finally
             {
-                connection.Close();
+                connection.Clone();
+                OnPostSave?.Invoke(new OnPostSaveArgs<Dto>(model, toReturn));
             }
 
+            return toReturn;
+        }
+
+        public IEnumerable<Dto> Get(Func<Dto, bool> lambda)
+        {
+            var dtos = GetAll();
             var result = new List<Dto>();
             foreach (var dto in dtos)
             {
@@ -133,7 +137,7 @@ namespace ProxySwitcher.DataAccess
                 connection.Open();
                 command.Connection = connection;
                 var reader = command.ExecuteReader();
-                List<Entity> entities = SQLiteUtils.ReadEntity<Entity>(reader);
+                List<Entity> entities = SQLiteUtils.ReadEntities<Entity>(reader);
                 foreach (var e in entities)
                 {
                     var dto = MapEntityToDto(e);

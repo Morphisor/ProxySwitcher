@@ -16,25 +16,47 @@ namespace ProxySwitcher.Interface
     public partial class ProxyEditor : Form
     {
         private readonly ProxySettingService _proxySettingService;
+        private readonly int? _proxyId;
 
-        public ProxyEditor()
+        public ProxyEditor(int? proxyId = null)
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             _proxySettingService = new ProxySettingService();
+            _proxyId = proxyId;
             Icon = Resources.TrayIcon;
+            if (_proxyId.HasValue)
+                LoadExistingProxy();
+        }
+
+        private void LoadExistingProxy()
+        {
+            var proxyDto = _proxySettingService.Get(proxy => proxy.ProxySettingId == _proxyId.Value).First();
+            ProxyNameTxt.Text = proxyDto.Name;
+            IpAddressTxt.Text = proxyDto.IpAddress;
+            PortTxt.Text = proxyDto.Port.ToString();
         }
 
         private void Save_Click(object sender, EventArgs e)
         {
-            var ProxyToSave = new ProxySettingDto();
-            ProxyToSave.CreateDate = DateTime.Now;
-            ProxyToSave.Name = ProxyNameTxt.Text;
-            ProxyToSave.IpAddress = IpAddressTxt.Text;
-            ProxyToSave.Port = int.Parse(PortTxt.Text);
-            _proxySettingService.Insert(ProxyToSave);
+            var proxyToSave = new ProxySettingDto();
+            proxyToSave.CreateDate = DateTime.Now;
+            proxyToSave.Name = ProxyNameTxt.Text;
+            proxyToSave.IpAddress = IpAddressTxt.Text;
+            proxyToSave.Port = int.Parse(PortTxt.Text);
+
+            if (_proxyId.HasValue)
+            {
+                proxyToSave.ProxySettingId = _proxyId.Value;
+                _proxySettingService.Update(proxyToSave);
+            }
+            else
+            {
+                _proxySettingService.Insert(proxyToSave);
+            }
+
             Close();
         }
     }

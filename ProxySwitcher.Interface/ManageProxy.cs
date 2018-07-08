@@ -40,7 +40,13 @@ namespace ProxySwitcher.Interface
 
         private void Edit_Click(object sender, EventArgs e)
         {
-            
+            if (ProxyList.SelectedItems.Count > 0)
+            {
+                var selectedItem = ProxyList.SelectedItems[0];
+                var proxyId = int.Parse(selectedItem.SubItems[3].Text);
+                new ProxyEditor(proxyId).ShowDialog();
+                LoadProxyList();
+            }
         }
 
         private void LoadProxyList()
@@ -52,6 +58,7 @@ namespace ProxySwitcher.Interface
                 var viewItem = new ListViewItem(proxy.Name);
                 viewItem.SubItems.Add(proxy.IpAddress);
                 viewItem.SubItems.Add(proxy.Port.ToString());
+                viewItem.SubItems.Add(proxy.ProxySettingId.ToString());
                 ProxyList.Items.Add(viewItem);
             }
         }
