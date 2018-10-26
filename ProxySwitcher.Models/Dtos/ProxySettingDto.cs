@@ -12,6 +12,5 @@ namespace ProxySwitcher.Models.Dtos
         public string Name { get; set; }
         public string IpAddress { get; set; }
         public int Port { get; set; }
-        public DateTime CreateDate { get; set; }
     }
 }

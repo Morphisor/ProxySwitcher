@@ -15,6 +15,5 @@ namespace ProxySwitcher.Models.Entities
         public string Name { get; set; }
         public string IpAddress { get; set; }
         public int Port { get; set; }
-        public double CreateDate { get; set; }
     }
 }

@@ -42,7 +42,6 @@ namespace ProxySwitcher.Interface
         private void Save_Click(object sender, EventArgs e)
         {
             var proxyToSave = new ProxySettingDto();
-            proxyToSave.CreateDate = DateTime.Now;
             proxyToSave.Name = ProxyNameTxt.Text;
             proxyToSave.IpAddress = IpAddressTxt.Text;
             proxyToSave.Port = int.Parse(PortTxt.Text);

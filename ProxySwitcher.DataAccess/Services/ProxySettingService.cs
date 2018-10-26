@@ -20,7 +20,6 @@ namespace ProxySwitcher.DataAccess.Services
         {
             var toReturn = new ProxySetting()
             {
-                CreateDate = model.CreateDate.GetUnixTime(),
                 IpAddress = model.IpAddress,
                 Port = model.Port,
                 Name = model.Name,
@@ -33,7 +32,6 @@ namespace ProxySwitcher.DataAccess.Services
         {
             var toReturn = new ProxySettingDto()
             {
-                CreateDate = model.CreateDate.GetDateTime(),
                 IpAddress = model.IpAddress,
                 Port = model.Port,
                 Name = model.Name,
