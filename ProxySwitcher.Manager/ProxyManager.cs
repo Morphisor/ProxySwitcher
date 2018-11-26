@@ -25,8 +25,16 @@ namespace ProxySwitcher.Manager
 
         public void ConnectToProxy(ProxySettingDto proxy)
         {
-            _registry.SetValue("ProxyServer", $"{proxy.IpAddress}:{proxy.Port}");
-            _registry.SetValue("ProxyEnable", 1);
+            if (!string.IsNullOrEmpty(proxy.Script))
+            {
+                _registry.SetValue("AutoConfigURL", proxy.Script);
+                _registry.SetValue("ProxyEnable", 0);
+            }
+            else
+            {
+                _registry.SetValue("ProxyServer", $"{proxy.IpAddress}:{proxy.Port}");
+                _registry.SetValue("ProxyEnable", 1);
+            }
             RefreshProxyChange();
         }
 

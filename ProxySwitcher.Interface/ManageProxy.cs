@@ -43,7 +43,7 @@ namespace ProxySwitcher.Interface
             if (ProxyList.SelectedItems.Count > 0)
             {
                 var selectedItem = ProxyList.SelectedItems[0];
-                var proxyId = int.Parse(selectedItem.SubItems[3].Text);
+                var proxyId = int.Parse(selectedItem.SubItems[4].Text);
                 new ProxyEditor(proxyId).ShowDialog();
                 LoadProxyList();
             }
@@ -58,6 +58,7 @@ namespace ProxySwitcher.Interface
                 var viewItem = new ListViewItem(proxy.Name);
                 viewItem.SubItems.Add(proxy.IpAddress);
                 viewItem.SubItems.Add(proxy.Port.ToString());
+                viewItem.SubItems.Add(proxy.Script);
                 viewItem.SubItems.Add(proxy.ProxySettingId.ToString());
                 ProxyList.Items.Add(viewItem);
             }

@@ -35,6 +35,8 @@
             this.PortTxt = new System.Windows.Forms.TextBox();
             this.PortLbl = new System.Windows.Forms.Label();
             this.Save = new System.Windows.Forms.Button();
+            this.ScriptLbl = new System.Windows.Forms.Label();
+            this.ScriptTxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ProxyNameTxt
@@ -87,7 +89,7 @@
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(12, 168);
+            this.Save.Location = new System.Drawing.Point(12, 243);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(203, 34);
             this.Save.TabIndex = 6;
@@ -95,11 +97,29 @@
             this.Save.UseVisualStyleBackColor = true;
             this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
+            // ScriptLbl
+            // 
+            this.ScriptLbl.AutoSize = true;
+            this.ScriptLbl.Location = new System.Drawing.Point(12, 172);
+            this.ScriptLbl.Name = "ScriptLbl";
+            this.ScriptLbl.Size = new System.Drawing.Size(34, 13);
+            this.ScriptLbl.TabIndex = 7;
+            this.ScriptLbl.Text = "Script";
+            // 
+            // ScriptTxt
+            // 
+            this.ScriptTxt.Location = new System.Drawing.Point(13, 193);
+            this.ScriptTxt.Name = "ScriptTxt";
+            this.ScriptTxt.Size = new System.Drawing.Size(202, 20);
+            this.ScriptTxt.TabIndex = 8;
+            // 
             // ProxyEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(236, 214);
+            this.ClientSize = new System.Drawing.Size(236, 289);
+            this.Controls.Add(this.ScriptTxt);
+            this.Controls.Add(this.ScriptLbl);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.PortLbl);
             this.Controls.Add(this.PortTxt);
@@ -123,5 +143,7 @@
         private System.Windows.Forms.TextBox PortTxt;
         private System.Windows.Forms.Label PortLbl;
         private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.Label ScriptLbl;
+        private System.Windows.Forms.TextBox ScriptTxt;
     }
 }

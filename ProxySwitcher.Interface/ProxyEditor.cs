@@ -37,6 +37,7 @@ namespace ProxySwitcher.Interface
             ProxyNameTxt.Text = proxyDto.Name;
             IpAddressTxt.Text = proxyDto.IpAddress;
             PortTxt.Text = proxyDto.Port.ToString();
+            ScriptTxt.Text = proxyDto.Script;
         }
 
         private void Save_Click(object sender, EventArgs e)
@@ -44,7 +45,8 @@ namespace ProxySwitcher.Interface
             var proxyToSave = new ProxySettingDto();
             proxyToSave.Name = ProxyNameTxt.Text;
             proxyToSave.IpAddress = IpAddressTxt.Text;
-            proxyToSave.Port = int.Parse(PortTxt.Text);
+            proxyToSave.Port = string.IsNullOrEmpty(PortTxt.Text) ? 0 : int.Parse(PortTxt.Text);
+            proxyToSave.Script = ScriptTxt.Text;
 
             if (_proxyId.HasValue)
             {

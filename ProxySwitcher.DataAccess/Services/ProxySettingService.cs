@@ -23,7 +23,8 @@ namespace ProxySwitcher.DataAccess.Services
                 IpAddress = model.IpAddress,
                 Port = model.Port,
                 Name = model.Name,
-                ProxySettingId = model.ProxySettingId
+                ProxySettingId = model.ProxySettingId,
+                Script = model.Script
             };
             return toReturn;
         }
@@ -35,7 +36,8 @@ namespace ProxySwitcher.DataAccess.Services
                 IpAddress = model.IpAddress,
                 Port = model.Port,
                 Name = model.Name,
-                ProxySettingId = model.ProxySettingId
+                ProxySettingId = model.ProxySettingId,
+                Script = model.Script
             };
             return toReturn;
         }
