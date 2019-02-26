@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ProxySettingService.cs" />
+    <Compile Include="Services\ScriptSettingService.cs" />
     <Compile Include="SQLiteBaseService.cs" />
     <Compile Include="SQLiteUtils.cs" />
   </ItemGroup>

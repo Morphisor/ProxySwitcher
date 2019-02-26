@@ -62,6 +62,11 @@ namespace ProxySwitcher.Interface
             menu.Items.Add(item);
 
             item = new ToolStripMenuItem();
+            item.Text = "Run Script";
+            item.Click += onClickRunScript;
+            menu.Items.Add(item);
+
+            item = new ToolStripMenuItem();
             item.Text = "Exit";
             item.Click += onClickExit;
             menu.Items.Add(item);
@@ -97,6 +102,12 @@ namespace ProxySwitcher.Interface
         private void onClickManage(object sender, EventArgs e)
         {
             new ManageProxy().ShowDialog();
+            RefreshProxyList();
+        }
+
+        private void onClickRunScript(object sender, EventArgs e)
+        {
+            new ManageScript().ShowDialog();
             RefreshProxyList();
         }
 

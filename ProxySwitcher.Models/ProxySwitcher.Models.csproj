@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dtos\ProxySettingDto.cs" />
+    <Compile Include="Dtos\ScriptSettingDto.cs" />
     <Compile Include="Entities\ProxySetting.cs" />
+    <Compile Include="Entities\ScriptSetting.cs" />
     <Compile Include="Misc\Configuration.cs" />
     <Compile Include="Misc\OnErrorArgs.cs" />
     <Compile Include="Misc\OnErrorType.cs" />
