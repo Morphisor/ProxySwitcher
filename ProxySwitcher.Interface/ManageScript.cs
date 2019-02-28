@@ -71,12 +71,13 @@ namespace ProxySwitcher.Interface
                 var selectedItem = ScriptList.SelectedItems[0];
                 Process scriptProcess = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                startInfo.WindowStyle = ProcessWindowStyle.Normal;
                 startInfo.FileName = "CMD.exe";
-                startInfo.Arguments = selectedItem.SubItems[2].Text;
+                startInfo.Arguments = "/c " + selectedItem.SubItems[2].Text;
                 scriptProcess.StartInfo = startInfo;
                 scriptProcess.Start();
                 scriptProcess.WaitForExit();
+                MessageBox.Show("Script execution completed.", "", MessageBoxButtons.OK);
             }
         }
     }
